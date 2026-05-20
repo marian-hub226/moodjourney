@@ -1,29 +1,70 @@
 import streamlit as st
 
+# ===== LANGUAGE FUNCTION =====
+
+language = st.session_state.get("language", "English")
+
+def t(en, es):
+
+    if language == "Español":
+        return es
+
+    return en
+
+# ===== SESSION DATA =====
+
 emotion = st.session_state.get("emotion", "Unknown Emotion")
 color = st.session_state.get("color", "#00F5FF")
 intensity = st.session_state.get("intensity", 50)
 
-st.markdown(f"""
-<div style="
-padding:40px;
-border-radius:30px;
+# ===== STYLES =====
 
-background:
-linear-gradient(
-135deg,
-rgba(255,255,255,0.08),
-rgba(255,255,255,0.03)
-);
+st.markdown("""
+<style>
 
-backdrop-filter:blur(16px);
+.glass-box {
 
-border:
-1px solid rgba(255,255,255,0.12);
+    padding:40px;
 
-box-shadow:
-0px 0px 50px {color};
+    border-radius:30px;
 
+    background:
+    linear-gradient(
+    135deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.03)
+    );
+
+    backdrop-filter: blur(16px);
+
+    border:
+    1px solid rgba(255,255,255,0.12);
+}
+
+.preview-box {
+
+    padding:40px;
+
+    border-radius:30px;
+
+    background:
+    rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(14px);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# ===== HERO SECTION =====
+
+hero_section = f"""
+<div class="glass-box"
+style="
+box-shadow:0px 0px 50px {color};
 ">
 
 <h1 style="
@@ -33,7 +74,7 @@ color:{color};
 text-shadow:0px 0px 30px {color};
 ">
 
-📖 Write Your Story
+📖 {t("Write Your Story", "Escribe Tu Historia")}
 
 </h1>
 
@@ -44,23 +85,37 @@ color:white;
 line-height:1.8;
 ">
 
+{t(
+f'''
 Your emotion is <b>{emotion}</b>.
 
 Now transform your feelings into words
 and create a personal emotional narrative.
+''',
+f'''
+Tu emoción es <b>{emotion}</b>.
+
+Ahora transforma tus sentimientos en palabras
+y crea una narrativa emocional personal.
+'''
+)}
 
 </p>
 
 </div>
-""",
-unsafe_allow_html=True)
+"""
+
+st.markdown(hero_section, unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ===== STORY TITLE =====
 
 title = st.text_input(
-    "✨ Story Title"
+    t(
+        "✨ Story Title",
+        "✨ Título de la Historia"
+    )
 )
 
 st.markdown("<br>", unsafe_allow_html=True)
@@ -68,14 +123,26 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ===== STORY BOX =====
 
 story = st.text_area(
-    "📝 Emotional Story",
+    t(
+        "📝 Emotional Story",
+        "📝 Historia Emocional"
+    ),
     height=300,
-    placeholder="""
+    placeholder=t(
+        """
 Example:
 
 The glowing lights surrounded the silent room while memories slowly faded into the dark...
+""",
+        """
+Ejemplo:
+
+Las luces brillantes rodeaban la habitación silenciosa mientras los recuerdos desaparecían lentamente en la oscuridad...
 """
+    )
 )
+
+# ===== SAVE DATA =====
 
 st.session_state["title"] = title
 st.session_state["story"] = story
@@ -84,22 +151,20 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 # ===== STORY PREVIEW =====
 
-st.markdown(f"""
-<div style="
-padding:40px;
-border-radius:30px;
+preview_title = title if title else t(
+    "Your Story Title",
+    "El Título de Tu Historia"
+)
 
-background:
-rgba(255,255,255,0.06);
+preview_story = story if story else t(
+    "Your emotional story preview will appear here...",
+    "La vista previa de tu historia emocional aparecerá aquí..."
+)
 
-backdrop-filter:blur(14px);
-
-border:
-1px solid rgba(255,255,255,0.08);
-
-box-shadow:
-0px 0px 40px {color};
-
+story_preview = f"""
+<div class="preview-box"
+style="
+box-shadow:0px 0px 40px {color};
 ">
 
 <h2 style="
@@ -108,7 +173,7 @@ font-size:2.2rem;
 margin-bottom:20px;
 ">
 
-{title if title else "Your Story Title"}
+{preview_title}
 
 </h2>
 
@@ -118,21 +183,22 @@ line-height:2;
 color:white;
 ">
 
-{story if story else "Your emotional story preview will appear here..."}
+{preview_story}
 
 </p>
 
 </div>
-""",
-unsafe_allow_html=True)
+"""
+
+st.markdown(story_preview, unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ===== FINAL EMOTIONAL CARD =====
+# ===== FINAL EMOTION CARD =====
 
 glow = intensity + 40
 
-st.markdown(f"""
+emotion_card = f"""
 <div style="
 height:220px;
 border-radius:30px;
@@ -161,9 +227,17 @@ box-shadow:
 ✨ {emotion} ✨
 
 </div>
-""",
-unsafe_allow_html=True)
+"""
+
+st.markdown(emotion_card, unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-st.success("Your emotional story has been saved ✨")
+# ===== FINAL MESSAGE =====
+
+st.success(
+    t(
+        "Your emotional story has been saved ✨",
+        "Tu historia emocional ha sido guardada ✨"
+    )
+)

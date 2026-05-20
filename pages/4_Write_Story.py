@@ -1,98 +1,59 @@
 import streamlit as st
 
-st.title("🖥️ Physical Simulation")
+st.title("📖 Write Your Story")
 
-st.write("""
-MoodLamp Studio también integra interacción con hardware
-simulado usando ESP32 y WOKWI.
+emotion = st.session_state.get("emotion", "Unknown Emotion")
+color = st.session_state.get("color", "#00F5FF")
+intensity = st.session_state.get("intensity", 50)
+
+st.write(f"""
+Your journey so far:
+
+- Emotion: {emotion}
+- Emotional intensity: {intensity}%
+- Main color: {color}
+
+Now transform your emotions into words.
 """)
 
 st.markdown("---")
 
-st.subheader("🔌 Componentes Utilizados")
+story = st.text_area(
+    "Write a short emotional story",
+    height=250,
+    placeholder="""
+Example:
 
-col1, col2 = st.columns(2)
-
-with col1:
-
-    st.markdown("""
-    ### Hardware
-    - ESP32
-    - LED RGB
-    - Simulación WOKWI
-    - Conexión WiFi virtual
-    """)
-
-with col2:
-
-    st.markdown("""
-    ### Software
-    - Streamlit
-    - Python
-    - WOKWI
-    - GitHub
-    """)
-
-st.markdown("---")
-
-st.subheader("🎨 Funcionamiento")
-
-st.write("""
-El usuario interactúa con MoodLamp Studio mediante:
-
-- selección de colores,
-- dibujo libre,
-- controles visuales,
-- ambientes interactivos.
-
-Estas interacciones representan emociones y estados de ánimo,
-los cuales pueden reflejarse físicamente mediante iluminación RGB
-simulada en WOKWI.
-""")
-
-st.markdown("---")
-
-st.subheader("🌈 Simulación RGB")
-
-selected_color = st.color_picker(
-    "Selecciona un color de simulación",
-    "#00F5FF"
+The blue lights surrounded me while silence filled the room...
+"""
 )
+
+title = st.text_input(
+    "Give your story a title"
+)
+
+st.session_state["story"] = story
+st.session_state["title"] = title
+
+st.markdown("---")
 
 st.markdown(f"""
 <div style="
-height:250px;
+padding:30px;
 border-radius:25px;
-background:{selected_color};
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:36px;
-font-weight:bold;
+background:{color};
 color:white;
-box-shadow:0px 0px 80px {selected_color};
+box-shadow:0px 0px 60px {color};
 ">
 
-RGB Simulation
+<h2>{title if title else "Your Story Title"}</h2>
+
+<p style="font-size:20px;">
+{story if story else "Your emotional story will appear here..."}
+</p>
 
 </div>
 """,
 unsafe_allow_html=True)
 
-st.markdown("---")
-
-st.subheader("🧠 Arquitectura del Sistema")
-
-st.code("""
-Usuario
-   ↓
-MoodLamp Studio (Streamlit)
-   ↓
-Visualización Artística
-   ↓
-Simulación Física WOKWI
-   ↓
-ESP32 + LED RGB
-""")
-
-st.success("Simulación física integrada correctamente ✨")
+st.success("Your emotional story has been saved ✨")

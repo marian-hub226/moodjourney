@@ -1,15 +1,45 @@
 import streamlit as st
 
-st.title("🎭 Choose Your Emotion")
+# ===== LANGUAGE FUNCTION =====
 
-st.write("""
+language = st.session_state.get("language", "English")
+
+def t(en, es):
+
+    if language == "Español":
+        return es
+
+    return en
+
+# ===== PAGE =====
+
+st.title(
+    t(
+        "🎭 Choose Your Emotion",
+        "🎭 Escoge Tu Emoción"
+    )
+)
+
+st.write(
+    t(
+        """
 Every emotion has a color, an energy and a visual identity.
 
 Choose the emotion that represents your current state.
-""")
+""",
+        """
+Cada emoción tiene un color, una energía y una identidad visual.
+
+Escoge la emoción que represente tu estado actual.
+"""
+    )
+)
 
 emotion = st.selectbox(
-    "✨ Select your emotion",
+    t(
+        "✨ Select your emotion",
+        "✨ Selecciona tu emoción"
+    ),
     [
         "Joy",
         "Sadness",
@@ -22,16 +52,24 @@ emotion = st.selectbox(
 )
 
 color = st.color_picker(
-    "🎨 Emotional color",
+    t(
+        "🎨 Emotional color",
+        "🎨 Color emocional"
+    ),
     "#00F5FF"
 )
 
 intensity = st.slider(
-    "⚡ Emotional intensity",
+    t(
+        "⚡ Emotional intensity",
+        "⚡ Intensidad emocional"
+    ),
     0,
     100,
     50
 )
+
+# ===== SAVE DATA =====
 
 st.session_state["emotion"] = emotion
 st.session_state["color"] = color
@@ -39,15 +77,16 @@ st.session_state["intensity"] = intensity
 
 st.markdown("<br>", unsafe_allow_html=True)
 
+# ===== GLOW CARD =====
+
 glow = intensity + 30
 
-st.markdown(f"""
+emotion_card = f"""
 <div style="
 padding:50px;
 border-radius:35px;
 
-background:
-linear-gradient(
+background: linear-gradient(
 135deg,
 {color},
 #050816
@@ -58,12 +97,9 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 
-box-shadow:
-0px 0px {glow}px {color};
+box-shadow:0px 0px {glow}px {color};
 
-border:
-1px solid rgba(255,255,255,0.12);
-
+border:1px solid rgba(255,255,255,0.12);
 ">
 
 <h1 style="
@@ -83,40 +119,61 @@ color:white;
 opacity:0.9;
 ">
 
-Intensity Level: {intensity}%
+{t("Intensity Level", "Nivel de Intensidad")}: {intensity}%
 
 </p>
 
 </div>
-""",
-unsafe_allow_html=True)
+"""
+
+st.markdown(emotion_card, unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-st.markdown(f"""
+# ===== REFLECTION CARD =====
+
+reflection_card = f"""
 <div class="glass-card">
 
 <h2 style="color:{color};">
-🌌 Emotional Reflection
+🌌 {t("Emotional Reflection", "Reflexión Emocional")}
 </h2>
 
 <p style="
 font-size:1.15rem;
 line-height:2;
+color:white;
 ">
 
+{t(
+'''
 Your selected emotion generates a unique visual atmosphere.
 The chosen color represents the emotional energy
 that will guide the rest of your artistic journey.
 
 Every next step will be influenced by this choice.
+''',
+'''
+La emoción seleccionada genera una atmósfera visual única.
+El color elegido representa la energía emocional
+que guiará el resto de tu viaje artístico.
+
+Cada siguiente paso estará influenciado por esta elección.
+'''
+)}
 
 </p>
 
 </div>
-""",
-unsafe_allow_html=True)
+"""
+
+st.markdown(reflection_card, unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-st.success("Emotion captured successfully ✨")
+st.success(
+    t(
+        "Emotion captured successfully ✨",
+        "Emoción capturada exitosamente ✨"
+    )
+)

@@ -1,46 +1,53 @@
 import streamlit as st
+from streamlit_drawable_canvas import st_canvas
 
-st.title("📊 Live Dashboard")
+st.title("🎨 Draw Your Mood")
 
-st.write("Visualización en tiempo real de MoodLamp.")
+st.write("""
+Expresa tus emociones a través del dibujo y el color.
+""")
 
-col1, col2, col3 = st.columns(3)
-
-col1.metric(
-    "Estado",
-    "ON"
+stroke_width = st.slider(
+    "Tamaño del pincel",
+    1,
+    25,
+    8
 )
 
-col2.metric(
-    "Mood",
-    "Relax"
+stroke_color = st.color_picker(
+    "Color del pincel",
+    "#00F5FF"
 )
 
-col3.metric(
-    "Intensidad",
-    "50%"
+bg_color = st.color_picker(
+    "Color de fondo",
+    "#0B1023"
+)
+
+drawing_mode = st.selectbox(
+    "Modo de dibujo",
+    (
+        "freedraw",
+        "line",
+        "rect",
+        "circle",
+        "transform"
+    )
 )
 
 st.markdown("---")
 
-st.subheader("Visualización artística")
-
-st.markdown("""
-<div style="
-    height:300px;
-    border-radius:20px;
-    background: linear-gradient(135deg, #00F5FF, #FF00E5);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-    font-weight:bold;
-    color:white;
-">
-MoodLamp Active
-</div>
-""", unsafe_allow_html=True)
+canvas_result = st_canvas(
+    fill_color="rgba(255, 255, 255, 0.1)",
+    stroke_width=stroke_width,
+    stroke_color=stroke_color,
+    background_color=bg_color,
+    height=500,
+    width=900,
+    drawing_mode=drawing_mode,
+    key="canvas",
+)
 
 st.markdown("---")
 
-st.info("Conexión ESP32: Simulada en WOKWI")
+st.success("Tu arte representa tu mood actual ✨")

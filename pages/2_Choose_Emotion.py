@@ -248,22 +248,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 # =====================================================
 
 led_card = f"""
-<div style='
-padding:40px;
-border-radius:30px;
-
-background:linear-gradient(
-135deg,
-rgba(255,255,255,0.08),
-rgba(255,255,255,0.03)
-);
-
-backdrop-filter:blur(14px);
-
-border:1px solid rgba(255,255,255,0.10);
-
-box-shadow:0px 0px 40px {color};
-'>
+<div style='padding:40px; border-radius:30px; background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03)); backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,0.10); box-shadow:0px 0px 40px {color};'>
 
 <h1 style='
 text-align:center;
@@ -311,23 +296,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 # =====================================================
 
 st.markdown(f"""
-<div style='
-height:120px;
-border-radius:25px;
-
-background:{color};
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:2rem;
-font-weight:bold;
-
-color:white;
-
-box-shadow:0px 0px 50px {color};
-'>
+<div style='height:120px; border-radius:25px; background:{color}; display:flex; justify-content:center; align-items:center; font-size:2rem; font-weight:bold; color:white; box-shadow:0px 0px 50px {color};'>
 
 {color}
 

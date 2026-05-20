@@ -35,6 +35,8 @@ Escoge la emoción que represente tu estado actual.
     )
 )
 
+# ===== INPUTS =====
+
 emotion = st.selectbox(
     t(
         "✨ Select your emotion",
@@ -82,42 +84,15 @@ st.markdown("<br>", unsafe_allow_html=True)
 glow = intensity + 30
 
 emotion_card = f"""
-<div style='
-padding:50px;
-border-radius:35px;
+<div style='padding:50px; border-radius:35px; background:linear-gradient(135deg,{color},#050816); display:flex; flex-direction:column; justify-content:center; align-items:center; box-shadow:0px 0px {glow}px {color}; border:1px solid rgba(255,255,255,0.12);'>
 
-background: linear-gradient(
-135deg,
-{color},
-#050816
-);
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-
-box-shadow:0px 0px {glow}px {color};
-
-border:1px solid rgba(255,255,255,0.12);
-'>
-
-<h1 style='
-font-size:4rem;
-color:white;
-text-shadow:0px 0px 30px white;
-margin-bottom:10px;
-'>
+<h1 style='font-size:4rem; color:white; text-shadow:0px 0px 30px white; margin-bottom:10px;'>
 
 {emotion}
 
 </h1>
 
-<p style='
-font-size:1.3rem;
-color:white;
-opacity:0.9;
-'>
+<p style='font-size:1.3rem; color:white; opacity:0.9;'>
 
 {t("Intensity Level", "Nivel de Intensidad")}: {intensity}%
 
@@ -133,17 +108,13 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ===== REFLECTION CARD =====
 
 reflection_card = f"""
-<div class="glass-card">
+<div style='padding:35px; border-radius:30px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); box-shadow:0px 0px 30px rgba(255,255,255,0.05);'>
 
 <h2 style='color:{color};'>
 🌌 {t("Emotional Reflection", "Reflexión Emocional")}
 </h2>
 
-<p style='
-font-size:1.15rem;
-line-height:2;
-color:white;
-'>
+<p style='font-size:1.15rem; line-height:2; color:white;'>
 
 {t(
 '''
@@ -170,6 +141,8 @@ Cada siguiente paso estará influenciado por esta elección.
 st.markdown(reflection_card, unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
+
+# ===== FINAL MESSAGE =====
 
 st.success(
     t(

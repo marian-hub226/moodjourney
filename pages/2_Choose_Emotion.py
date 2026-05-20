@@ -82,7 +82,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 glow = intensity + 30
 
 emotion_card = f"""
-<div style="
+<div style='
 padding:50px;
 border-radius:35px;
 
@@ -100,24 +100,24 @@ align-items:center;
 box-shadow:0px 0px {glow}px {color};
 
 border:1px solid rgba(255,255,255,0.12);
-">
+'>
 
-<h1 style="
+<h1 style='
 font-size:4rem;
 color:white;
 text-shadow:0px 0px 30px white;
 margin-bottom:10px;
-">
+'>
 
 {emotion}
 
 </h1>
 
-<p style="
+<p style='
 font-size:1.3rem;
 color:white;
 opacity:0.9;
-">
+'>
 
 {t("Intensity Level", "Nivel de Intensidad")}: {intensity}%
 
@@ -135,15 +135,15 @@ st.markdown("<br>", unsafe_allow_html=True)
 reflection_card = f"""
 <div class="glass-card">
 
-<h2 style="color:{color};">
+<h2 style='color:{color};'>
 🌌 {t("Emotional Reflection", "Reflexión Emocional")}
 </h2>
 
-<p style="
+<p style='
 font-size:1.15rem;
 line-height:2;
 color:white;
-">
+'>
 
 {t(
 '''

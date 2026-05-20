@@ -17,73 +17,18 @@ emotion = st.session_state.get("emotion", "Unknown Emotion")
 color = st.session_state.get("color", "#00F5FF")
 intensity = st.session_state.get("intensity", 50)
 
-# ===== STYLES =====
-
-st.markdown("""
-<style>
-
-.glass-box {
-
-    padding:40px;
-
-    border-radius:30px;
-
-    background:
-    linear-gradient(
-    135deg,
-    rgba(255,255,255,0.08),
-    rgba(255,255,255,0.03)
-    );
-
-    backdrop-filter: blur(16px);
-
-    border:
-    1px solid rgba(255,255,255,0.12);
-}
-
-.preview-box {
-
-    padding:40px;
-
-    border-radius:30px;
-
-    background:
-    rgba(255,255,255,0.06);
-
-    backdrop-filter: blur(14px);
-
-    border:
-    1px solid rgba(255,255,255,0.08);
-}
-
-</style>
-""", unsafe_allow_html=True)
-
 # ===== HERO SECTION =====
 
 hero_section = f"""
-<div class="glass-box"
-style="
-box-shadow:0px 0px 50px {color};
-">
+<div style='padding:40px; border-radius:30px; background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03)); border:1px solid rgba(255,255,255,0.12); box-shadow:0px 0px 50px {color};'>
 
-<h1 style="
-text-align:center;
-font-size:3.5rem;
-color:{color};
-text-shadow:0px 0px 30px {color};
-">
+<h1 style='text-align:center; font-size:3.5rem; color:{color}; text-shadow:0px 0px 30px {color};'>
 
 📖 {t("Write Your Story", "Escribe Tu Historia")}
 
 </h1>
 
-<p style="
-text-align:center;
-font-size:1.2rem;
-color:white;
-line-height:1.8;
-">
+<p style='text-align:center; font-size:1.2rem; color:white; line-height:1.8;'>
 
 {t(
 f'''
@@ -162,26 +107,15 @@ preview_story = story if story else t(
 )
 
 story_preview = f"""
-<div class="preview-box"
-style="
-box-shadow:0px 0px 40px {color};
-">
+<div style='padding:40px; border-radius:30px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); box-shadow:0px 0px 40px {color};'>
 
-<h2 style="
-color:{color};
-font-size:2.2rem;
-margin-bottom:20px;
-">
+<h2 style='color:{color}; font-size:2.2rem; margin-bottom:20px;'>
 
 {preview_title}
 
 </h2>
 
-<p style="
-font-size:1.2rem;
-line-height:2;
-color:white;
-">
+<p style='font-size:1.2rem; line-height:2; color:white;'>
 
 {preview_story}
 
@@ -199,30 +133,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 glow = intensity + 40
 
 emotion_card = f"""
-<div style="
-height:220px;
-border-radius:30px;
-
-background:
-radial-gradient(
-circle,
-{color},
-#050816
-);
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:2.8rem;
-font-weight:bold;
-
-color:white;
-
-box-shadow:
-0px 0px {glow}px {color};
-
-">
+<div style='height:220px; border-radius:30px; background:radial-gradient(circle,{color},#050816); display:flex; justify-content:center; align-items:center; font-size:2.8rem; font-weight:bold; color:white; box-shadow:0px 0px {glow}px {color};'>
 
 ✨ {emotion} ✨
 

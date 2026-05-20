@@ -1,58 +1,21 @@
 import streamlit as st
 
-st.title("🎨 Mood Creator")
+st.title("🌌 Welcome to MoodJourney")
 
-st.write("Diseña un ambiente emocional interactivo.")
+st.write("""
+This experience will guide you through different emotional
+and artistic stages.
 
-mood = st.selectbox(
-    "Selecciona un mood",
-    [
-        "🌙 Relax",
-        "😊 Happy",
-        "🎯 Focus",
-        "🎉 Party",
-        "💙 Sad"
-    ]
-)
+You will:
 
-color = st.color_picker(
-    "Color principal",
-    "#00F5FF"
-)
+1. Choose an emotion and color
+2. Express yourself through drawing
+3. Write a short emotional story
+4. Generate your final artistic experience
 
-intensity = st.slider(
-    "Intensidad de luz",
-    0,
-    100,
-    50
-)
-
-message = st.text_input(
-    "Describe tu ambiente ideal"
-)
+Your emotions will shape your journey.
+""")
 
 st.markdown("---")
 
-st.subheader("Vista previa")
-
-st.markdown(
-    f"""
-    <div style="
-        background-color:{color};
-        padding:40px;
-        border-radius:20px;
-        text-align:center;
-        color:black;
-        font-size:28px;
-        font-weight:bold;
-    ">
-        {mood}
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-st.write(f"✨ Intensidad: {intensity}%")
-
-if st.button("Activar Mood"):
-    st.success(f"{mood} activado correctamente ✨")
+st.success("Ready to begin? Use the sidebar ✨")

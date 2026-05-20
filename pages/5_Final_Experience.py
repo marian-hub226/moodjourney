@@ -11,6 +11,8 @@ title = st.session_state.get("title", "Untitled Story")
 
 drawing = st.session_state.get("drawing", None)
 
+# ===== HERO SECTION =====
+
 st.markdown(f"""
 <div style="
 padding:40px;
@@ -155,7 +157,6 @@ color:white;
 box-shadow:
 0px 0px 80px {color};
 
-animation:pulse 3s infinite;
 ">
 
 ✨ {emotion} ✨
@@ -163,6 +164,36 @@ animation:pulse 3s infinite;
 </div>
 """,
 unsafe_allow_html=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+# ===== EXPORT EXPERIENCE =====
+
+export_text = f"""
+MOODJOURNEY — EMOTIONAL EXPERIENCE
+
+Emotion:
+{emotion}
+
+Intensity:
+{intensity}%
+
+Main Color:
+{color}
+
+Story Title:
+{title}
+
+Story:
+{story}
+"""
+
+st.download_button(
+    label="⬇ Download Emotional Experience",
+    data=export_text,
+    file_name="moodjourney_experience.txt",
+    mime="text/plain"
+)
 
 st.markdown("<br>", unsafe_allow_html=True)
 

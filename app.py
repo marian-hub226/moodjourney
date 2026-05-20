@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="MoodLamp Studio",
+    page_title="MoodJourney",
     page_icon="🎨",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -17,6 +17,7 @@ st.markdown("""
 
 h1, h2, h3 {
     color: #00F5FF;
+    text-align: center;
 }
 
 [data-testid="stSidebar"] {
@@ -39,19 +40,24 @@ div.stButton > button:hover {
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🎨 MoodLamp Studio")
+st.title("🎨 MoodJourney")
 
-st.subheader("Experiencia Artística Multimodal")
+st.subheader("An Interactive Emotional Art Experience")
+
+st.markdown("---")
 
 st.write("""
-MoodLamp Studio transforma emociones, colores y creatividad
-en experiencias visuales interactivas.
+MoodJourney is an artistic and multimodal experience where users
+explore emotions through:
 
-Explora ambientes digitales, dibujo libre y visualizaciones artísticas.
+- colors,
+- drawing,
+- storytelling,
+- and interactive visual expression.
+
+Each step builds a personalized emotional journey.
 """)
 
-st.image(
-    "https://images.unsplash.com/photo-1519608487953-e999c86e7455"
-)
+st.markdown("---")
 
-st.info("Usa el menú lateral para navegar por la experiencia ✨")
+st.info("Use the sidebar to begin your emotional journey ✨")

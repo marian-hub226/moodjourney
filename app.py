@@ -1,5 +1,21 @@
 import streamlit as st
 
+# ===== LANGUAGE =====
+
+language = st.sidebar.selectbox(
+    "🌍 Language",
+    ["English", "Español"]
+)
+
+st.session_state["language"] = language
+
+def t(en, es):
+
+    if st.session_state["language"] == "Español":
+        return es
+
+    return en
+
 st.set_page_config(
     page_title="MoodJourney",
     page_icon="🎨",

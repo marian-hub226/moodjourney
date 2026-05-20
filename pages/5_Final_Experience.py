@@ -22,73 +22,18 @@ title = st.session_state.get("title", "Untitled Story")
 
 drawing = st.session_state.get("drawing", None)
 
-# ===== STYLES =====
-
-st.markdown("""
-<style>
-
-.glass-box {
-
-    padding:40px;
-
-    border-radius:30px;
-
-    background:
-    linear-gradient(
-    135deg,
-    rgba(255,255,255,0.08),
-    rgba(255,255,255,0.03)
-    );
-
-    backdrop-filter: blur(16px);
-
-    border:
-    1px solid rgba(255,255,255,0.12);
-}
-
-.info-box {
-
-    padding:35px;
-
-    border-radius:30px;
-
-    background:
-    rgba(255,255,255,0.06);
-
-    backdrop-filter: blur(14px);
-
-    border:
-    1px solid rgba(255,255,255,0.08);
-}
-
-</style>
-""", unsafe_allow_html=True)
-
 # ===== HERO SECTION =====
 
 hero_section = f"""
-<div class="glass-box"
-style="
-box-shadow:0px 0px 50px {color};
-">
+<div style='padding:40px; border-radius:30px; background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03)); border:1px solid rgba(255,255,255,0.12); box-shadow:0px 0px 50px {color};'>
 
-<h1 style="
-text-align:center;
-font-size:4rem;
-color:{color};
-text-shadow:0px 0px 30px {color};
-">
+<h1 style='text-align:center; font-size:4rem; color:{color}; text-shadow:0px 0px 30px {color};'>
 
 {emotion}
 
 </h1>
 
-<p style="
-text-align:center;
-font-size:1.3rem;
-color:white;
-margin-top:-10px;
-">
+<p style='text-align:center; font-size:1.3rem; color:white; margin-top:-10px;'>
 
 {t(
 "Your emotional journey has been completed.",
@@ -107,12 +52,12 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ===== DRAWING SECTION =====
 
 drawing_title = f"""
-<div class="info-box">
+<div style='padding:35px; border-radius:30px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08);'>
 
-<h2 style="
-color:{color};
-">
+<h2 style='color:{color};'>
+
 🎨 {t("Emotional Expression", "Expresión Emocional")}
+
 </h2>
 
 </div>
@@ -153,26 +98,15 @@ story_content = story if story else t(
 )
 
 story_section = f"""
-<div class="info-box"
-style="
-box-shadow:0px 0px 40px {color};
-">
+<div style='padding:35px; border-radius:30px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); box-shadow:0px 0px 40px {color};'>
 
-<h2 style="
-color:{color};
-font-size:2.2rem;
-margin-bottom:20px;
-">
+<h2 style='color:{color}; font-size:2.2rem; margin-bottom:20px;'>
 
 📖 {story_title}
 
 </h2>
 
-<p style="
-font-size:1.2rem;
-line-height:2;
-color:white;
-">
+<p style='font-size:1.2rem; line-height:2; color:white;'>
 
 {story_content}
 
@@ -188,17 +122,15 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ===== SUMMARY =====
 
 summary_section = f"""
-<div class="info-box">
+<div style='padding:35px; border-radius:30px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08);'>
 
-<h2>
+<h2 style='color:white;'>
+
 ✨ {t("Emotional Summary", "Resumen Emocional")}
+
 </h2>
 
-<ul style="
-font-size:1.2rem;
-line-height:2;
-color:white;
-">
+<ul style='font-size:1.2rem; line-height:2; color:white;'>
 
 <li>
 <b>{t("Emotion", "Emoción")}:</b> {emotion}
@@ -226,30 +158,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 glow = intensity + 50
 
 final_visual = f"""
-<div style="
-height:300px;
-border-radius:30px;
-
-background:
-radial-gradient(
-circle,
-{color},
-#050816
-);
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:3rem;
-font-weight:bold;
-
-color:white;
-
-box-shadow:
-0px 0px {glow}px {color};
-
-">
+<div style='height:300px; border-radius:30px; background:radial-gradient(circle,{color},#050816); display:flex; justify-content:center; align-items:center; font-size:3rem; font-weight:bold; color:white; box-shadow:0px 0px {glow}px {color};'>
 
 ✨ {emotion} ✨
 

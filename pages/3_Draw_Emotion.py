@@ -1,75 +1,73 @@
 import streamlit as st
+from streamlit_drawable_canvas import st_canvas
 
-st.title("🌈 Live Visualizer")
+st.title("🎨 Draw Your Emotion")
 
-st.write("""
-Transforma emociones en ambientes visuales interactivos.
+emotion = st.session_state.get("emotion", "Unknown Emotion")
+color = st.session_state.get("color", "#00F5FF")
+intensity = st.session_state.get("intensity", 50)
+
+st.write(f"""
+You selected the emotion:
+
+### {emotion}
+
+Now express it visually through drawing.
 """)
-
-mood = st.selectbox(
-    "Selecciona tu mood actual",
-    [
-        "🌙 Relax",
-        "🔥 Energetic",
-        "💙 Melancholy",
-        "🎉 Party",
-        "🎯 Focus"
-    ]
-)
-
-primary_color = st.color_picker(
-    "Color principal",
-    "#00F5FF"
-)
-
-secondary_color = st.color_picker(
-    "Color secundario",
-    "#FF00E5"
-)
-
-intensity = st.slider(
-    "Intensidad visual",
-    0,
-    100,
-    70
-)
-
-blur = 100 - intensity
 
 st.markdown("---")
 
-st.subheader("Visualización generada")
+stroke_width = st.slider(
+    "Brush size",
+    1,
+    25,
+    8
+)
+
+drawing_mode = st.selectbox(
+    "Drawing mode",
+    (
+        "freedraw",
+        "line",
+        "rect",
+        "circle",
+        "transform"
+    )
+)
+
+canvas_result = st_canvas(
+    fill_color="rgba(255,255,255,0.1)",
+    stroke_width=stroke_width,
+    stroke_color=color,
+    background_color="#0B1023",
+    height=500,
+    width=900,
+    drawing_mode=drawing_mode,
+    key="canvas",
+)
+
+st.session_state["drawing"] = canvas_result.image_data
+
+st.markdown("---")
 
 st.markdown(f"""
 <div style="
-height:450px;
-border-radius:30px;
-background:
-linear-gradient(
-135deg,
-{primary_color},
-{secondary_color}
-);
+height:180px;
+border-radius:25px;
+background:{color};
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:42px;
+font-size:36px;
 font-weight:bold;
 color:white;
-box-shadow:0px 0px {blur}px {primary_color};
+box-shadow:0px 0px 70px {color};
 ">
 
-{mood}
+{emotion}
 
 </div>
 """,
 unsafe_allow_html=True)
 
-st.markdown("---")
-
-st.metric(
-    label="Nivel de intensidad",
-    value=f"{intensity}%"
-)
-
-st.success("Ambiente visual generado correctamente ✨")
+st.success("Your emotional drawing has been saved ✨")

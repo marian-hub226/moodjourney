@@ -1,10 +1,17 @@
 import streamlit as st
 
-# ===== LANGUAGE =====
+# ===== INITIAL LANGUAGE =====
+
+if "language" not in st.session_state:
+
+    st.session_state["language"] = "English"
+
+# ===== LANGUAGE SELECTOR =====
 
 language = st.sidebar.selectbox(
     "🌍 Language",
-    ["English", "Español"]
+    ["English", "Español"],
+    index=0 if st.session_state["language"] == "English" else 1
 )
 
 st.session_state["language"] = language

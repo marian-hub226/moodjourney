@@ -1,5 +1,5 @@
 import streamlit as st
-
+from app import t
 # ===== LANGUAGE =====
 
 language = st.sidebar.selectbox(

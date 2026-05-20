@@ -10,18 +10,80 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-/* ===== FONDO GENERAL ===== */
+/* ===== FONDO ANIMADO ===== */
 
 .stApp {
-    background:
-    linear-gradient(
-        135deg,
-        #050816 0%,
-        #0B1023 50%,
-        #120B25 100%
-    );
 
-    color: white;
+    background:
+    radial-gradient(circle at top left, #120B25, #050816);
+
+    overflow-x:hidden;
+
+}
+
+/* ===== PARTÍCULAS ===== */
+
+.particles {
+
+    position: fixed;
+
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+
+    z-index: -1;
+
+    overflow: hidden;
+}
+
+.particle {
+
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    background: rgba(255,255,255,0.8);
+
+    border-radius: 50%;
+
+    animation: float 20s infinite linear;
+}
+
+@keyframes float {
+
+    from {
+
+        transform:
+        translateY(100vh);
+
+        opacity: 0;
+
+    }
+
+    10% {
+
+        opacity: 1;
+
+    }
+
+    90% {
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform:
+        translateY(-10vh);
+
+        opacity: 0;
+
+    }
+
 }
 
 /* ===== SIDEBAR ===== */
@@ -35,21 +97,24 @@ st.markdown("""
         #120B25
     );
 
-    border-right: 1px solid rgba(255,255,255,0.08);
+    border-right:
+    1px solid rgba(255,255,255,0.08);
 }
 
-/* ===== TÍTULOS ===== */
+/* ===== TITLES ===== */
 
 h1 {
 
     color: #00F5FF;
+
     text-align: center;
+
     font-size: 4rem;
+
     font-weight: 800;
 
     text-shadow:
     0px 0px 25px #00F5FF;
-
 }
 
 h2, h3 {
@@ -58,16 +123,19 @@ h2, h3 {
 
 }
 
-/* ===== TEXTO ===== */
+/* ===== TEXT ===== */
 
 p, li {
 
     font-size: 1.1rem;
+
     line-height: 1.8;
+
+    color: white;
 
 }
 
-/* ===== BOTONES ===== */
+/* ===== BUTTONS ===== */
 
 div.stButton > button {
 
@@ -101,10 +169,9 @@ div.stButton > button:hover {
 
     box-shadow:
     0px 0px 30px rgba(255,0,229,0.7);
-
 }
 
-/* ===== CARDS ===== */
+/* ===== GLASS CARD ===== */
 
 .glass-card {
 
@@ -122,35 +189,24 @@ div.stButton > button:hover {
 
     box-shadow:
     0px 0px 30px rgba(0,0,0,0.25);
-
-}
-
-/* ===== INFO BOX ===== */
-
-[data-testid="stAlert"] {
-
-    border-radius: 18px;
-
-}
-
-/* ===== INPUTS ===== */
-
-.stTextInput input,
-.stTextArea textarea {
-
-    border-radius: 14px !important;
-
-}
-
-/* ===== SLIDER ===== */
-
-.stSlider {
-
-    padding-top: 20px;
-
 }
 
 </style>
+
+<div class="particles">
+
+<div class="particle" style="left:10%; animation-delay:0s;"></div>
+<div class="particle" style="left:20%; animation-delay:2s;"></div>
+<div class="particle" style="left:30%; animation-delay:4s;"></div>
+<div class="particle" style="left:40%; animation-delay:1s;"></div>
+<div class="particle" style="left:50%; animation-delay:3s;"></div>
+<div class="particle" style="left:60%; animation-delay:5s;"></div>
+<div class="particle" style="left:70%; animation-delay:2s;"></div>
+<div class="particle" style="left:80%; animation-delay:4s;"></div>
+<div class="particle" style="left:90%; animation-delay:1s;"></div>
+
+</div>
+
 """, unsafe_allow_html=True)
 
 st.markdown("""
@@ -171,9 +227,9 @@ font-size:1.2rem;
 margin-top:30px;
 ">
 
-MoodJourney transforms emotions into
-colors, drawings and stories through
-an immersive artistic experience.
+Explore emotions through colors,
+drawing and storytelling
+inside an immersive digital experience.
 
 </p>
 

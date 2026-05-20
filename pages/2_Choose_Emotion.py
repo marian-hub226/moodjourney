@@ -167,3 +167,194 @@ st.success(
         "Emoción capturada exitosamente ✨"
     )
 )
+
+# =====================================================
+# LED RING EXPERIENCE
+# =====================================================
+
+effects = {
+
+    "Joy": {
+        "effect_en": "Rainbow Cycle",
+        "effect_es": "Ciclo Arcoíris",
+        "description_en":
+        "A vibrant rainbow animation representing happiness and energy.",
+        "description_es":
+        "Una animación arcoíris vibrante que representa felicidad y energía."
+    },
+
+    "Sadness": {
+        "effect_en": "Blue Breathing",
+        "effect_es": "Respiración Azul",
+        "description_en":
+        "A slow blue pulse symbolizing emotional depth and silence.",
+        "description_es":
+        "Un pulso azul lento que simboliza profundidad emocional y silencio."
+    },
+
+    "Calm": {
+        "effect_en": "Soft Cyan Glow",
+        "effect_es": "Brillo Cyan Suave",
+        "description_en":
+        "A stable cyan glow creating peace and serenity.",
+        "description_es":
+        "Un brillo cyan estable que crea paz y serenidad."
+    },
+
+    "Fear": {
+        "effect_en": "Purple Flash",
+        "effect_es": "Destello Púrpura",
+        "description_en":
+        "Fast flashes expressing tension and uncertainty.",
+        "description_es":
+        "Destellos rápidos que expresan tensión e incertidumbre."
+    },
+
+    "Excitement": {
+        "effect_en": "Fast Spin",
+        "effect_es": "Giro Rápido",
+        "description_en":
+        "Rapid moving lights representing adrenaline and emotion.",
+        "description_es":
+        "Luces rápidas en movimiento que representan adrenalina y emoción."
+    },
+
+    "Love": {
+        "effect_en": "Pink Pulse",
+        "effect_es": "Pulso Rosa",
+        "description_en":
+        "A soft pulsing pink light inspired by affection and warmth.",
+        "description_es":
+        "Una suave luz rosa pulsante inspirada en afecto y calidez."
+    },
+
+    "Loneliness": {
+        "effect_en": "Single Dim Light",
+        "effect_es": "Luz Individual Tenue",
+        "description_en":
+        "A lonely fading light surrounded by darkness.",
+        "description_es":
+        "Una luz tenue y solitaria rodeada por oscuridad."
+    }
+
+}
+
+selected_effect = effects.get(emotion)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+# =====================================================
+# LED EXPERIENCE CARD
+# =====================================================
+
+led_card = f"""
+<div style='
+padding:40px;
+border-radius:30px;
+
+background:linear-gradient(
+135deg,
+rgba(255,255,255,0.08),
+rgba(255,255,255,0.03)
+);
+
+backdrop-filter:blur(14px);
+
+border:1px solid rgba(255,255,255,0.10);
+
+box-shadow:0px 0px 40px {color};
+'>
+
+<h1 style='
+text-align:center;
+font-size:3rem;
+color:{color};
+text-shadow:0px 0px 20px {color};
+'>
+
+🌈 {t("LED Ring Experience", "Experiencia LED Ring")}
+
+</h1>
+
+<h2 style='
+text-align:center;
+color:white;
+margin-top:20px;
+'>
+
+{selected_effect["effect_es"] if language == "Español" else selected_effect["effect_en"]}
+
+</h2>
+
+<p style='
+text-align:center;
+font-size:1.15rem;
+line-height:2;
+color:white;
+opacity:0.9;
+margin-top:20px;
+'>
+
+{selected_effect["description_es"] if language == "Español" else selected_effect["description_en"]}
+
+</p>
+
+</div>
+"""
+
+st.markdown(led_card, unsafe_allow_html=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+# =====================================================
+# RGB VISUALIZATION
+# =====================================================
+
+st.markdown(f"""
+<div style='
+height:120px;
+border-radius:25px;
+
+background:{color};
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:2rem;
+font-weight:bold;
+
+color:white;
+
+box-shadow:0px 0px 50px {color};
+'>
+
+{color}
+
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+# =====================================================
+# WOKWI INSTRUCTIONS
+# =====================================================
+
+st.info(
+    t(
+        f"""
+Open the Wokwi simulation and write:
+
+{emotion.upper()}
+
+inside the Serial Monitor to activate the LED effect.
+""",
+        f"""
+Abre la simulación de Wokwi y escribe:
+
+{emotion.upper()}
+
+en el Serial Monitor para activar el efecto LED.
+"""
+    )
+)

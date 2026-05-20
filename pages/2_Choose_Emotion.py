@@ -1,53 +1,56 @@
 import streamlit as st
-from streamlit_drawable_canvas import st_canvas
 
-st.title("🎨 Draw Your Mood")
+st.title("🎭 Choose Your Emotion")
 
-st.write("""
-Expresa tus emociones a través del dibujo y el color.
-""")
-
-stroke_width = st.slider(
-    "Tamaño del pincel",
-    1,
-    25,
-    8
+emotion = st.selectbox(
+    "Select your current emotion",
+    [
+        "Joy",
+        "Sadness",
+        "Calm",
+        "Fear",
+        "Excitement",
+        "Love",
+        "Loneliness"
+    ]
 )
 
-stroke_color = st.color_picker(
-    "Color del pincel",
+color = st.color_picker(
+    "Choose a color that represents your emotion",
     "#00F5FF"
 )
 
-bg_color = st.color_picker(
-    "Color de fondo",
-    "#0B1023"
+intensity = st.slider(
+    "Emotional intensity",
+    0,
+    100,
+    50
 )
 
-drawing_mode = st.selectbox(
-    "Modo de dibujo",
-    (
-        "freedraw",
-        "line",
-        "rect",
-        "circle",
-        "transform"
-    )
-)
+st.session_state["emotion"] = emotion
+st.session_state["color"] = color
+st.session_state["intensity"] = intensity
 
 st.markdown("---")
 
-canvas_result = st_canvas(
-    fill_color="rgba(255, 255, 255, 0.1)",
-    stroke_width=stroke_width,
-    stroke_color=stroke_color,
-    background_color=bg_color,
-    height=500,
-    width=900,
-    drawing_mode=drawing_mode,
-    key="canvas",
-)
+st.markdown(f"""
+<div style="
+height:300px;
+border-radius:30px;
+background:{color};
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:40px;
+font-weight:bold;
+color:white;
+box-shadow:0px 0px 60px {color};
+">
 
-st.markdown("---")
+{emotion}
 
-st.success("Tu arte representa tu mood actual ✨")
+</div>
+""",
+unsafe_allow_html=True)
+
+st.success("Emotion saved successfully ✨")

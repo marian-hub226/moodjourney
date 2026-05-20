@@ -35,22 +35,37 @@ Escoge la emoción que represente tu estado actual.
     )
 )
 
+# ===== DEFAULT VALUES =====
+
+if "emotion" not in st.session_state:
+    st.session_state["emotion"] = "Joy"
+
+if "color" not in st.session_state:
+    st.session_state["color"] = "#00F5FF"
+
+if "intensity" not in st.session_state:
+    st.session_state["intensity"] = 50
+
 # ===== INPUTS =====
+
+emotion_options = [
+    "Joy",
+    "Sadness",
+    "Calm",
+    "Fear",
+    "Excitement",
+    "Love",
+    "Loneliness"
+]
 
 emotion = st.selectbox(
     t(
         "✨ Select your emotion",
         "✨ Selecciona tu emoción"
     ),
-    [
-        "Joy",
-        "Sadness",
-        "Calm",
-        "Fear",
-        "Excitement",
-        "Love",
-        "Loneliness"
-    ]
+    emotion_options,
+    index=emotion_options.index(st.session_state["emotion"]),
+    key="emotion_select"
 )
 
 color = st.color_picker(
@@ -58,7 +73,8 @@ color = st.color_picker(
         "🎨 Emotional color",
         "🎨 Color emocional"
     ),
-    "#00F5FF"
+    value=st.session_state["color"],
+    key="color_picker"
 )
 
 intensity = st.slider(
@@ -68,7 +84,8 @@ intensity = st.slider(
     ),
     0,
     100,
-    50
+    value=st.session_state["intensity"],
+    key="intensity_slider"
 )
 
 # ===== SAVE DATA =====

@@ -329,19 +329,19 @@ opacity:0.9;
 '>
 
 {t(
-f"""
-Open the Wokwi simulation and type:
+"""
+Click the Wokwi link, press the Play button
+and type any of these emotions inside the Serial Monitor:
 
-<b>{emotion.upper()}</b>
-
-inside the Serial Monitor to activate the LED effect.
+<b>JOY</b>, <b>SADNESS</b>, <b>LOVE</b>,
+<b>FEAR</b>, <b>CALM</b> or <b>EXCITEMENT</b>.
 """,
-f"""
-Abre la simulación de Wokwi y escribe:
+"""
+Da click en el link de Wokwi, presiona el botón Play
+y escribe cualquiera de estas emociones dentro del Serial Monitor:
 
-<b>{emotion.upper()}</b>
-
-en el Serial Monitor para activar el efecto LED.
+<b>JOY</b>, <b>SADNESS</b>, <b>LOVE</b>,
+<b>FEAR</b>, <b>CALM</b> o <b>EXCITEMENT</b>.
 """
 )}
 

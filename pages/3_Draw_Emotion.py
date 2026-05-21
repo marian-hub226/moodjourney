@@ -144,37 +144,12 @@ st.markdown("<br>", unsafe_allow_html=True)
 glow = intensity + 20
 
 emotion_card = f"""
-<div style='
-height:110px;
-border-radius:22px;
-
-background:radial-gradient(
-circle,
-{color},
-#050816
-);
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:1.8rem;
-font-weight:bold;
-
-color:white;
-
-margin-top:10px;
-margin-bottom:25px;
-
-box-shadow:0px 0px {glow}px {color};
-'>
+<div style='height:110px; border-radius:22px; background:radial-gradient(circle,{color},#050816); display:flex; justify-content:center; align-items:center; font-size:1.8rem; font-weight:bold; color:white; margin-top:10px; margin-bottom:25px; box-shadow:0px 0px {glow}px {color};'>
 
 ✨ {emotion} ✨
 
 </div>
 """
-
-st.markdown(emotion_card, unsafe_allow_html=True)
 
 # ===== FINAL MESSAGE =====
 

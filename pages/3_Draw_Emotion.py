@@ -139,21 +139,42 @@ st.session_state["drawing"] = canvas_result.image_data
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ===== EMOTIONAL VISUAL =====
+# ===== MINI EMOTION CARD =====
 
-glow = intensity + 40
+glow = intensity + 20
 
-emotion_visual = f"""
-<div style='height:220px; border-radius:30px; background:radial-gradient(circle,{color},#050816); display:flex; justify-content:center; align-items:center; font-size:3rem; font-weight:bold; color:white; box-shadow:0px 0px {glow}px {color};'>
+emotion_card = f"""
+<div style='
+height:110px;
+border-radius:22px;
 
-{emotion}
+background:radial-gradient(
+circle,
+{color},
+#050816
+);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:1.8rem;
+font-weight:bold;
+
+color:white;
+
+margin-top:10px;
+margin-bottom:25px;
+
+box-shadow:0px 0px {glow}px {color};
+'>
+
+✨ {emotion} ✨
 
 </div>
 """
 
-st.markdown(emotion_visual, unsafe_allow_html=True)
-
-st.markdown("<br>", unsafe_allow_html=True)
+st.markdown(emotion_card, unsafe_allow_html=True)
 
 # ===== FINAL MESSAGE =====
 

@@ -292,38 +292,60 @@ st.markdown(led_card, unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 
 # =====================================================
-# RGB VISUALIZATION
+# WOKWI LINK
 # =====================================================
+
+wokwi_url = "https://wokwi.com/projects/464581491904789505"
 
 st.markdown(f"""
-<div style='height:120px; border-radius:25px; background:{color}; display:flex; justify-content:center; align-items:center; font-size:2rem; font-weight:bold; color:white; box-shadow:0px 0px 50px {color};'>
+<div style='
+text-align:center;
+margin-top:25px;
+'>
 
-{color}
+<a href="{wokwi_url}" target="_blank"
+style='
+background:{color};
+padding:16px 28px;
+border-radius:16px;
+text-decoration:none;
+font-size:1.1rem;
+font-weight:bold;
+color:white;
+box-shadow:0px 0px 25px {color};
+display:inline-block;
+'>
 
-</div>
-""", unsafe_allow_html=True)
+🚀 {t("Open Wokwi LED Simulation", "Abrir Simulación LED en Wokwi")}
 
-st.markdown("<br>", unsafe_allow_html=True)
+</a>
 
-# =====================================================
-# WOKWI INSTRUCTIONS
-# =====================================================
+<p style='
+margin-top:25px;
+font-size:1.1rem;
+line-height:1.8;
+color:white;
+opacity:0.9;
+'>
 
-st.info(
-    t(
-        f"""
-Open the Wokwi simulation and write:
+{t(
+f"""
+Open the Wokwi simulation and type:
 
-{emotion.upper()}
+<b>{emotion.upper()}</b>
 
 inside the Serial Monitor to activate the LED effect.
 """,
-        f"""
+f"""
 Abre la simulación de Wokwi y escribe:
 
-{emotion.upper()}
+<b>{emotion.upper()}</b>
 
 en el Serial Monitor para activar el efecto LED.
 """
-    )
-)
+)}
+
+</p>
+
+</div>
+""", unsafe_allow_html=True)
